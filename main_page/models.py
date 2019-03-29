@@ -7,7 +7,7 @@ from django import forms
 
 # Create your models here.
 class Post(models.Model):
-	image = models.FileField(upload_to='dog_image')
+	img1 = models.ImageField(upload_to='dog_image', default='default.jpg')
 	breed = models.CharField(max_length=100)
 	name = models.CharField(max_length=100)
 	contact = models.IntegerField()

@@ -4,20 +4,21 @@ from .models import Post
 from django.contrib import messages
 from .forms import ModelForm
 
-
 # Create your views here.
 def home(request):
 	if request.method == 'POST':
 		form=ModelForm(request.POST, request.FILES)
 		if form.is_valid():
-#			img = Post(handle_uploaded_file(request.FILES['image']))
-#			img.save()
 			form.save()
 			messages.success(request, f'Thank You!!')
 			return redirect('main_page-lost')
 	else:
 		form=ModelForm()
-	return render(request, 'main_page/home.html', {'form' : form})
+
+	context = {
+	'form': form
+	}
+	return render(request, 'main_page/home.html', context)
 
 def lost(request):
 	context = {
